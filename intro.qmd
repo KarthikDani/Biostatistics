@@ -1,0 +1,47 @@
+# Something
+
+## Arithmetic Mean by Transformation
+
+Say the values are: $x_1, x_2, x_3, .. , x_n$
+
+Let $\bar x$ be the true mean and $x_m$ be a range mean where both are different for computational efficient mean calculation.
+
+Step 1: Sort and take the highest and lowest values, say $x_{min}$ and $x_{max}$ and get $x_{m} = \frac{x_{min} + x_{max}}{2}$
+
+Step 2: Get $\bar y = \frac{\sum {(x - \bar x)}}{N}$
+
+Step 3: Later, get the true mean by $\bar x = \bar y + 65$
+
+> Suppose there's large variations in the dataset then arithemetic mean will be more biased toward the bigger set of numbers and don't truly represent the data. So Geometric mean gives a better idea.
+
+## Geometric Mean
+
+$$
+GM = \sqrt[n]{x_1 \cdot x_2 \cdot \ldots \cdot x_n}
+$$
+
+## Median 
+
+$$
+MedianPosition = 0.5(N+1)
+$$
+
+> Mean \< Median \< Mode
+
+## Mean Absolute Deviation
+
+$$
+\frac{\sum_{i=1}^{n}{|x_i - \bar x|}}{N}
+$$
+
+## Standard Deviation
+
+For population standard deviation $\sigma$ it's $N$ and for sample standard deviation $s$ it's $N-1$
+
+$$
+\sigma = \sqrt[]{\frac{\sum_{i=1}^{n}{(x_i - \bar x)^2}}{N}}
+$$
+
+> **Variance** is square of Standard Deviation
+
+$\sum_{i=1}^{n}{(x_i - \bar x)^2}$ can also be written as $\sum_{i=1}^{n}x_i - n \bar x^2$

@@ -1,0 +1,23 @@
+# Preliminary {.unnumbered}
+
+Example case: You are the clinical coordinator for a clinical trial. You are enrolling patients at X locations and want to add a new site. In order to add a new site, an institution review board (IRB) must review and approve your trial protocol.
+
+What would be my "Stopping rule"?
+
+Stopping protocol
+
+:   the set of rules that either helps me declare trail a success or a failure (to minimise losses)
+
+## Types of Studies
+
+1.  Surveys and Cross sectional studies (now)
+2.  Retrospective studies (past)
+3.  Prospective studies ()
+4.  Clinical Trails
+
+## Types of Sampling
+
+1.  Simple Random sampling ![](images/clipboard-2504216283.png)
+2.  Convenience sampling
+3.  Systematic sampling
+4.  Stratified Random sampling
