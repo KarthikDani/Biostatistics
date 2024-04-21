@@ -1,0 +1,37 @@
+# Correlation and Regression
+
+## Correlation and Covariance
+
+Correlation coefficient $\rho$ is given by,
+
+$$
+\rho = \frac{s_{xy}}{s_x s_y}
+$$
+
+and $s_{xy}$ is the Co Variance of $x$ and $y$ given by,
+
+$$
+s_{xy} = \frac{\sum (x_i - \bar x)(y_i - \bar y)}{N -1} = \frac{\sum x_i y_i - n \bar x \bar y}{N-1}
+$$
+
+where $-1 \leq \rho \leq 1$
+
+## Regression
+
+Best line fit for the data where error $E$ should be minimised,
+
+$$
+E = \sum_{i=1}^{n}(y_i - (a + bx_i))^2
+$$
+
+After all the minimisation derivation for $e_i = (y_i - (a + bx_i))^2$,
+
+$$
+a = \bar y - b \bar x
+$$
+
+and
+
+$$
+b = \frac{s_{xy}}{s_x^2}
+$$

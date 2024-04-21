@@ -1,4 +1,8 @@
-# Something
+# Descriptive Statistics
+
+```{r include=FALSE}
+knitr::opts_chunk$set(warning=FALSE, message=FALSE)
+```
 
 ## Arithmetic Mean by Transformation
 
@@ -20,7 +24,7 @@ $$
 GM = \sqrt[n]{x_1 \cdot x_2 \cdot \ldots \cdot x_n}
 $$
 
-## Median 
+## Median
 
 $$
 MedianPosition = 0.5(N+1)
@@ -45,3 +49,117 @@ $$
 > **Variance** is square of Standard Deviation
 
 $\sum_{i=1}^{n}{(x_i - \bar x)^2}$ can also be written as $\sum_{i=1}^{n}x_i - n \bar x^2$
+
+## Chebyshev's theorem
+
+For a number $k > 1$ and $N$ measurements, at least $1 - \frac{1}{k^2}$ lie within $k$ standard deviations of their mean.
+
+$$
+(\bar x \pm ks) \approx (1 - \frac{1}{k^2}) \%
+$$
+
+```{r}
+# Load necessary library
+library(ggplot2)
+
+# Set seed for reproducibility
+set.seed(123)
+
+# Generate a sample from a normal distribution
+n <- 1000  # sample size
+sample_data <- rnorm(n, mean = 50, sd = 10)  # mean = 50, sd = 10
+
+# Calculate mean and standard deviation
+mean_val <- mean(sample_data)
+sd_val <- sd(sample_data)
+
+# Choose a value of k (e.g., 2, 3, 4)
+k <- 2
+
+# Calculate the range [mean - k * sd, mean + k * sd]
+lower_bound <- mean_val - k * sd_val
+upper_bound <- mean_val + k * sd_val
+
+# Create a data frame for ggplot
+data_df <- data.frame(value = sample_data)
+
+# Create the plot
+p <- ggplot(data_df, aes(x = value)) +
+  # Plot the histogram
+  geom_histogram(aes(y = ..density..), bins = 30, fill = "lightblue", color = "black") +
+  # Plot the normal distribution curve
+  stat_function(fun = dnorm, args = list(mean = mean_val, sd = sd_val),
+                color = "red", size = 1) +
+  # Shade the regions outside the range [mean - k * sd, mean + k * sd]
+  geom_rect(aes(xmin = -Inf, xmax = lower_bound, ymin = 0, ymax = Inf),
+            fill = "gray", alpha = 0.4) +
+  geom_rect(aes(xmin = upper_bound, xmax = Inf, ymin = 0, ymax = Inf),
+            fill = "gray", alpha = 0.4) +
+  # Add vertical lines for mean, lower bound, and upper bound
+  geom_vline(xintercept = mean_val, color = "blue", linetype = "dashed", size = 1) +
+  geom_vline(xintercept = lower_bound, color = "green", linetype = "dashed", size = 1) +
+  geom_vline(xintercept = upper_bound, color = "green", linetype = "dashed", size = 1) +
+  # Add labels and title
+  labs(title = paste("Demonstration of Chebyshev's Theorem (k =", k, ")"),
+       x = "Value",
+       y = "Density") +
+  # Add legend
+  scale_color_manual(values = c("blue", "green"), labels = c("Mean", "Bounds")) +
+  theme_minimal()
+
+# Display the plot
+print(p)
+
+```
+
+## Z score: Relative standing
+
+$$
+Zscore = \frac{(x - \bar x)}{S.D}
+$$
+
+> Z score can be used to remove outlier
+
+## Percentiles
+
+First Quartile: $Q_1 = 0.25(N + 1)$ th position and Third Quartile: $Q_3 = 0.75(N+1)$ th position
+
+InterQuartile Range: $IQR = Q_3 - Q_1$
+
+## Detecting Outliers
+
+Outliers (Lower and Upper Fences)can be pointed out with the help of following expression,
+
+$$
+Q_1 \pm 1.5IQR
+$$
+
+## Moments
+
+$m_r^* = \frac{\sum y^r}{N}$ is the moment about 'zero'
+
+For moment about any point $a$ is defined as, $m_r^* = \frac{\sum{(y - a)^r}}{N}$
+
+Hence the moment about the mean is,
+
+$$
+m_r^* = \frac{\sum (y - \bar y)^r}{N}
+$$
+
+where $r = 1, 2, 3 ...$
+
+> Since moments are not same in units as the number, Skewness is a quantity that's dimensionless.
+
+## Skewness
+
+$$
+a_3 = \frac{\sum (y - \bar y)^3}{\sqrt[]{\sum (y - \bar y)^{2}}^3} = \frac{m_3}{\sqrt[]{m_{2}}^3}
+$$
+
+## Kurtosis
+
+Measures how sharp or flat is a curve,
+
+$$
+a_3 = \frac{\sum (y - \bar y)^4}{[\sum (y - \bar y)^{2}]^2} = \frac{m_4}{m_{2}^2}
+$$
